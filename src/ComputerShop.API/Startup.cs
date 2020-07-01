@@ -33,9 +33,20 @@ namespace ComputerShop.API
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDb>();
-            
+
+            services.AddControllers();
             services.AddHealthChecks();
             services.AddAuthorization();
+            
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .WithHeaders();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,15 +59,16 @@ namespace ComputerShop.API
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
- 
+
             app.UseRouting();
+            app.UseCors();
  
             app.UseAuthentication();
             app.UseAuthorization();
             
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapControllers();
             });
         }
     }
