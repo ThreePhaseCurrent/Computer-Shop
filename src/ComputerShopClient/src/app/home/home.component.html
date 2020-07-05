@@ -1,1 +1,4 @@
 <p>{{data}}</p>
+<div fxFlex [hidden]="data || getDataError">
+    <mat-spinner><h4>Loading...</h4></mat-spinner>
+</div>

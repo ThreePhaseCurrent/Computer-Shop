@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+
 
 namespace ComputerShop.API.Controllers
 {
@@ -48,7 +48,7 @@ namespace ComputerShop.API.Controllers
             
             if (signInResult.Succeeded)
             {
-                var token = GetToken(user);
+                var token = await GetToken(user);
             
                 return Ok(new
                 {

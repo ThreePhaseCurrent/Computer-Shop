@@ -1,1 +1,18 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+    <!-- <span><img src="/assets/images/logo.png" height=30 width=41></span> -->
+    <h1 class="logo">Computer Shop</h1>
+    <span class="menu-spacer"></span>
+    <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span> Home</a>
+    <span class="flex-spacer"></span>
+
+
+    <button *ngIf='!isLoggedIn' mat-button (click)="openLoginForm()">
+        <mat-icon>power_settings_new</mat-icon>
+        Login
+    </button>
+
+    <button *ngIf='isLoggedIn' mat-button (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
+        Logout
+    </button>
+  </mat-toolbar>

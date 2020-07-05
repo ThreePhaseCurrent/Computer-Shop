@@ -71,7 +71,7 @@ namespace ComputerShop.API
                 {
                     builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .WithHeaders();
+                        .AllowAnyHeader();
                 });
             });
         }
