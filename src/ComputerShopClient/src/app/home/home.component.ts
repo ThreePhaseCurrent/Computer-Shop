@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { DestroyService } from '../services/destroy.service';
 import { HttpHeaders } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -21,16 +22,22 @@ export class HomeComponent implements OnInit {
     private destroy$: DestroyService) { }
 
   ngOnInit(): void {
-    this.authService.inventoryChanger$.pipe(takeUntil(this.destroy$)).subscribe(sbj =>{
-      if(sbj){
-        this.homeService.getData().subscribe(data => this.data = data);
-      }else{
-        this.data = null;
-      }
-    },
-    errorMsg =>{
-      this.getDataError = <any>errorMsg;
-    });
+      this.authService.isAuthChanger$.pipe(takeUntil(this.destroy$)).subscribe(sbj => 
+        {
+          if(sbj)
+          {
+            this.getHomeData();
+          } 
+        },
+      errorMsg =>{
+        this.getDataError = <any>errorMsg;
+      });
+    }
+
+  //get data from server
+  getHomeData(){
+    this.homeService.getData().pipe(takeUntil(this.destroy$))
+              .subscribe(data => this.data = data);
   }
 
 }

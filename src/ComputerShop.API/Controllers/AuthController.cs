@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ComputerShop.API.Identity;
+using ComputerShop.API.Data;
 using ComputerShop.API.Models;
+using ComputerShop.API.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -45,14 +46,15 @@ namespace ComputerShop.API.Controllers
             var user = await _userManager.FindByEmailAsync(request.UserLogin);
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, 
                 request.UserPassword, false);
-            
+
             if (signInResult.Succeeded)
             {
                 var token = await GetToken(user);
             
-                return Ok(new
+                return Ok(new LoginViewModel()
                 {
-                    access_token = token
+                    UserName = user.UserName,
+                    AccessToken = token
                 });
             }
             

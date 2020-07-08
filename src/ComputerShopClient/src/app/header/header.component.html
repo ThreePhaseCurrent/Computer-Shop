@@ -12,6 +12,10 @@
     </button>
 
     <button *ngIf='isLoggedIn' mat-button (click)="logout()">
+        <div>
+            {{userName}}
+        </div>
+
         <mat-icon>power_settings_new</mat-icon>
         Logout
     </button>

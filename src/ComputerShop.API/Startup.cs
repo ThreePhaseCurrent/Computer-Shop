@@ -1,20 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ComputerShop.API.Identity;
+using ComputerShop.API.Data;
 using ComputerShop.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using IdentityDbContext = Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext;
 
 namespace ComputerShop.API
 {
@@ -31,11 +26,15 @@ namespace ComputerShop.API
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IdentityDb>(options => 
-                options.UseSqlServer(Configuration["IdentityDb:ConnectionString"]));
+            // services.AddDbContext<ApplicationDbContext>(options => 
+            //     options.UseSqlServer(Configuration["ComputerShopDb:ConnectionString"]));
+
+            //add postgresql db
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(Configuration["ComputerShopDb:PostgreSql:ConnectionString"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDb>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             var authOptionsConfig = Configuration.GetSection("Auth");
@@ -77,7 +76,7 @@ namespace ComputerShop.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -97,6 +96,8 @@ namespace ComputerShop.API
             {
                 endpoints.MapControllers();
             });
+            
+            InitData.SeedData(serviceProvider);
         }
     }
 }

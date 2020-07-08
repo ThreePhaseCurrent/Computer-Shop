@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
-import { map } from 'rxjs/operators';
+import { map, takeUntil, first } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { DestroyService } from '../services/destroy.service';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  userName: string;
+
   constructor(public dialog: MatDialog,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private destroy$: DestroyService) { }
 
   public get isLoggedIn(): boolean{
     return this.authService.isAuthenticated();
@@ -23,6 +27,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.userNameChanger$.pipe()
+    .subscribe(user =>{
+      this.userName = <string>user;
+    });
   }
 
   openLoginForm(){

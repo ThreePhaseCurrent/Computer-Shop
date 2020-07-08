@@ -4,7 +4,7 @@ import { routes } from '../app-routing/routes';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { Observable, from, BehaviorSubject } from 'rxjs';
-import { Token } from '../models/token';
+import { Login } from '../models/login';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 import { tap, catchError } from 'rxjs/operators';
@@ -23,18 +23,25 @@ export class AuthService {
     private http: HttpClient,
     private httpMsgService: ProcessHttpmsgService) { }
 
-  isAuth; 
+  isAuth: boolean; 
+  userName: string;
 
-  private inventorySubject$ = new BehaviorSubject<boolean>(this.isAuth);
-  inventoryChanger$ = this.inventorySubject$.asObservable();
+  private isAuthSubject$ = new BehaviorSubject<boolean>(this.isAuth);
+  isAuthChanger$ = this.isAuthSubject$.asObservable();
 
-  login(email: string, password: string, rememberMe: boolean): Observable<Token>{
-      return this.http.post<Token>(`${baseURL}auth/login`, {UserLogin: email, UserPassword: password, RememberMe: rememberMe})
-        .pipe(tap(token => {
-          localStorage.setItem(ASSECC_TOKEN_KEY, token.access_token);
+  private userNameSubject$ = new BehaviorSubject<string>(this.userName);
+  userNameChanger$ = this.userNameSubject$.asObservable();
+
+  login(email: string, password: string, rememberMe: boolean): Observable<Login>{
+      return this.http.post<Login>(`${baseURL}auth/login`, {UserLogin: email, UserPassword: password, RememberMe: rememberMe})
+        .pipe(tap(loginData => {
+          localStorage.setItem(ASSECC_TOKEN_KEY, loginData.accessToken);
 
           this.isAuth = true;
-          this.inventorySubject$.next(this.isAuth);
+          this.isAuthSubject$.next(this.isAuth);
+
+          this.userName = loginData.userName;
+          this.userNameSubject$.next(this.userName);
         }))
         .pipe(catchError(this.httpMsgService.handleError));
   }
@@ -48,7 +55,7 @@ export class AuthService {
     localStorage.removeItem(ASSECC_TOKEN_KEY);
     
     this.isAuth = false;
-    this.inventorySubject$.next(this.isAuth);
+    this.isAuthSubject$.next(this.isAuth);
 
     this.router.navigate(['']);
   }
