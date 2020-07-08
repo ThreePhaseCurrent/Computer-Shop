@@ -97,6 +97,14 @@ namespace ComputerShop.API
                 endpoints.MapControllers();
             });
             
+            //create db
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.EnsureCreated();
+            }
+            
+            //test data
             InitData.SeedData(serviceProvider);
         }
     }
