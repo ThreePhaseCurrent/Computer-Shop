@@ -7,7 +7,9 @@ using ComputerShop.API.Data;
 using ComputerShop.API.Models;
 using ComputerShop.API.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,15 +23,51 @@ namespace ComputerShop.API.Controllers
         private SignInManager<ApplicationUser> _signInManager;
         private UserManager<ApplicationUser> _userManager;
         private IOptions<AuthOptions> _authOptions;
-        private RoleManager<IdentityRole> _roleManager;
         
         public AuthController(SignInManager<ApplicationUser> signInManager, IOptions<AuthOptions> authOptions, 
-            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _authOptions = authOptions;
             _userManager = userManager;
-            _roleManager = roleManager;
+        }
+
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] Register register)
+        {
+            var user = new ApplicationUser()
+            {
+                ProfileImage = "",
+                FirstName = register.FirstName,
+                LastName = register.LastName,
+                Email = register.Email,
+                NormalizedEmail = register.Email.ToUpper(),
+                UserName = register.UserName,
+                NormalizedUserName = register.UserName.ToUpper(),
+                PhoneNumber = register.Phone,
+                EmailConfirmed = false,
+                PhoneNumberConfirmed = false,
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+            
+            var result = await _userManager.CreateAsync(user, register.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+        [Route("username-check/{username}")]
+        [HttpGet]
+        public async Task<bool> UserNameCheck(string username)
+        {
+            var user = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.UserName == username);
+
+            return user == null;
         }
         
         [Route("login")]
@@ -38,7 +76,7 @@ namespace ComputerShop.API.Controllers
         {
             return Unauthorized();
         }
-        
+
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] Login request)
