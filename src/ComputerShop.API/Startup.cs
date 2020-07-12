@@ -1,5 +1,6 @@
 using System;
 using ComputerShop.API.Data;
+using ComputerShop.API.Entities;
 using ComputerShop.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +33,7 @@ namespace ComputerShop.API
             //add postgresql db
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration["ComputerShopDb:PostgreSql:ConnectionString"]));
-
+            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

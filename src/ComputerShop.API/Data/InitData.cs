@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ComputerShop.API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,7 @@ namespace ComputerShop.API.Data
             foreach (string role in roles)
             {
                 var roleStore = new RoleStore<IdentityRole>(context);
-
+            
                 if (!context.Roles.Any(r => r.Name == role))
                 {
                     roleStore.CreateAsync(new IdentityRole(role));
