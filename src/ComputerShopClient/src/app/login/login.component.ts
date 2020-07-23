@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
 
   user = {username: '', password: '', remember: false};
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>,
-    private authService: AuthService) {
+  constructor(private authService: AuthService) {
    }
   
   isAuth: boolean;
@@ -34,9 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.username, this.user.password, this.user.remember)
       .subscribe(login => {
         this.isAuth = true;
-        
-        this.dialogRef.close();
-      },
+        },
       errorMsg => {
         this.loginError = <any>errorMsg;
       });

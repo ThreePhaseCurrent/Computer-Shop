@@ -1,0 +1,48 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      
+      <form class="example-form" #f="ngForm" [formGroup]="registerForm" (ngSubmit)='onSubmit()'>
+        <mat-card-content>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" formControlName="firstName">
+          <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last name" formControlName="lastName">
+          <mat-error *ngIf="formErrors.lastName">{{ formErrors.lastName }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" formControlName="userName">
+            <mat-error *ngIf="formErrors.userName">{{ formErrors.userName }}</mat-error>
+            <mat-error *ngIf="registerForm.controls['userName'].errors?.busy">This username is already taken!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type='password' placeholder="Password" formControlName="password">
+            <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
+        </mat-form-field>
+
+        <div id='telNimber'>
+          <ngx-intl-tel-input class="example-full-width" formControlName="phoneNumber"></ngx-intl-tel-input>
+        </div>
+
+        </mat-card-content>
+
+        <button mat-button color="primary">Register</button>
+
+      </form>
+    </mat-card>
+
+    <div *ngIf="isAuth">Trueeeeeeeeeeeeee</div>
+  </div>

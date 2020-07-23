@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { baseURL } from './shared/baseurl';
 import { HomeService } from './services/home.service';
@@ -36,6 +38,10 @@ import {MatInputModule} from '@angular/material/input';
 import 'hammerjs';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SigninComponent } from './signin/signin.component';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
+import { from } from 'rxjs';
 
 export function tokenGetter(){
   return localStorage.getItem(ASSECC_TOKEN_KEY);
@@ -47,7 +53,8 @@ export function tokenGetter(){
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +75,10 @@ export function tokenGetter(){
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    BsDropdownModule.forRoot(), 
+    NgxIntlTelInputModule,
 
     JwtModule.forRoot({
       config: {
@@ -80,7 +91,7 @@ export function tokenGetter(){
 
     ],
   providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService],
-  entryComponents: [LoginComponent],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

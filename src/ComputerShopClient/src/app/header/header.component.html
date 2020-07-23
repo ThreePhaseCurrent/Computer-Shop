@@ -6,10 +6,18 @@
     <span class="flex-spacer"></span>
 
 
-    <button *ngIf='!isLoggedIn' mat-button (click)="openLoginForm()">
-        <mat-icon>power_settings_new</mat-icon>
-        Login
-    </button>
+    <div *ngIf='!isLoggedIn'>
+        <button mat-button routerLink='/login'>
+            <mat-icon>login</mat-icon>
+            Login
+        </button>
+
+        <button mat-button routerLink='/signin'>
+            <mat-icon>login</mat-icon>
+            Sign In
+        </button>
+    </div>
+    
 
     <button *ngIf='isLoggedIn' mat-button (click)="logout()">
         <div>

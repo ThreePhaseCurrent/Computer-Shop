@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
 
   userName: string;
 
-  constructor(public dialog: MatDialog,
-    private authService: AuthService,
+  constructor(private authService: AuthService,
     private destroy$: DestroyService) { }
 
   public get isLoggedIn(): boolean{
@@ -31,10 +30,6 @@ export class HeaderComponent implements OnInit {
     .subscribe(user =>{
       this.userName = <string>user;
     });
-  }
-
-  openLoginForm(){
-    this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
   }
 
 }

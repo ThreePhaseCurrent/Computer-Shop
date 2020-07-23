@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 import { tap, catchError } from 'rxjs/operators';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
+import { utf8Encode } from '@angular/compiler/src/util';
+import { Register } from '../models/register';
 
 export const ASSECC_TOKEN_KEY = "access_token";
 
@@ -49,6 +51,25 @@ export class AuthService {
   isAuthenticated(): boolean{
     var token = localStorage.getItem(ASSECC_TOKEN_KEY);
     return token && !this.jwtHelper.isTokenExpired(token);
+  }
+
+  checkUserName(userName: string): Observable<boolean>{
+    if(userName == '') return new Observable;
+
+    return this.http.get<boolean>(`${baseURL}auth/username-check/` + userName);
+  }
+
+  register(data: Register): Observable<any> {
+    console.log(data);
+    return this.http.post(`${baseURL}auth/register`, {
+      FirstName: data.firstName,
+      LastName: data.lastName,
+      UserName: data.userName,
+      Email: data.email,
+      Password: data.password,
+      Phone: data.phoneNumber.e164Number
+    })
+    .pipe(catchError(this.httpMsgService.handleError));
   }
 
   logout(){
