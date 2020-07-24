@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
 mat-card {
     max-width: 400px;
     margin: 2em auto;
@@ -17,4 +19,19 @@ mat-card {
 #telNimber {
   margin-top: 1em;
   margin-bottom: 2em;
+}
+
+.img-successful{
+  height: 150px;
+  width: 150px;
+}
+
+.message-succesful {
+  text-align: center;
+}
+
+.message-succesful p {
+  font-family: Yanone Kaffeesatzm; 
+  font-weight: 400; 
+  font-size: 30px;
 }

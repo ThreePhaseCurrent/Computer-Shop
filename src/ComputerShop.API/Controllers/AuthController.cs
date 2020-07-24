@@ -20,9 +20,9 @@ namespace ComputerShop.API.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private SignInManager<ApplicationUser> _signInManager;
-        private UserManager<ApplicationUser> _userManager;
-        private IOptions<AuthOptions> _authOptions;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IOptions<AuthOptions> _authOptions;
         
         public AuthController(SignInManager<ApplicationUser> signInManager, IOptions<AuthOptions> authOptions, 
             UserManager<ApplicationUser> userManager)

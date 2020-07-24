@@ -17,7 +17,10 @@ export class SigninComponent implements OnInit {
   userNameValid = false;
 
   formResult: Register;
+  resultSended: boolean;
+
   isAuth = false;
+  regiserError;
 
   formErrors = {
     'firstName': '',
@@ -107,11 +110,14 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit(){
+    this.resultSended = true;
     this.formResult = this.registerForm.value;
 
     this.authService.register(this.formResult).subscribe(res => {
+      this.resultSended = false;
       this.isAuth = true;
-    });
+    },
+    errmess => this.regiserError = <any>errmess);
   }
 
 }
