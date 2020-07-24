@@ -109,9 +109,6 @@ export class SigninComponent implements OnInit {
   onSubmit(){
     this.formResult = this.registerForm.value;
 
-    console.log(this.formResult);
-    console.log(this.formResult.lastName);
-
     this.authService.register(this.formResult).subscribe(res => {
       this.isAuth = true;
     });
