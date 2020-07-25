@@ -1,4 +1,13 @@
-<p>{{data}}</p>
-<div fxFlex [hidden]="data || getDataError">
-    <mat-spinner><h4>Loading...</h4></mat-spinner>
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+    <p>{{data}}</p>
+    <div fxFlex [hidden]="data || getDataError">
+        <mat-spinner><h4>Loading...</h4></mat-spinner>
+    </div>
+
 </div>

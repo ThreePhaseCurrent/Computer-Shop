@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+
+html, body{
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+body {
+  background-image:url(https://cdn.inspirationhut.net/wp-content/uploads/2013/05/17.png);
+  background-position:center;
+  background-size:cover;
+  background-repeat:repeat;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 $lt-gray: #ddd;
 $background-dark: #512DA8;
@@ -28,21 +43,6 @@ $divider-color:        #BDBDBD;
 
 .flex-spacer {
   flex: 1 1 auto;
-}
-
-html, body{
-  height:100%;
-  margin:0;
-  padding:0;
-}
-
-body {
-  background-image:url(https://cdn.inspirationhut.net/wp-content/uploads/2013/05/17.png);
-  background-position:center;
-  background-size:cover;
-  background-repeat:repeat;
-  min-height:100vh;
-  font-family:'Roboto', sans-serif;
 }
 
 .app-header {

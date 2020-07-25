@@ -32,6 +32,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import {MatInputModule} from '@angular/material/input';
 
@@ -42,6 +43,7 @@ import { SigninComponent } from './signin/signin.component';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
 import { from } from 'rxjs';
+import { AuthGuard } from './app-routing/auth-guard';
 
 export function tokenGetter(){
   return localStorage.getItem(ASSECC_TOKEN_KEY);
@@ -80,6 +82,8 @@ export function tokenGetter(){
     BsDropdownModule.forRoot(), 
     NgxIntlTelInputModule,
 
+    MDBBootstrapModule.forRoot(),
+
     JwtModule.forRoot({
       config: {
         tokenGetter,
@@ -90,7 +94,7 @@ export function tokenGetter(){
     FontAwesomeModule
 
     ],
-  providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService],
+  providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService, AuthGuard],
   entryComponents: [],
   bootstrap: [AppComponent]
 })
