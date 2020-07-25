@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using ComputerShop.API.Data;
 using ComputerShop.API.Entities;
 using ComputerShop.API.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace ComputerShop.API
 {
@@ -43,7 +47,7 @@ namespace ComputerShop.API
 
             var authOptions = authOptionsConfig.Get<AuthOptions>();
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddHealthChecks();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -74,6 +78,18 @@ namespace ComputerShop.API
                         .AllowAnyHeader();
                 });
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo(){Title = "Computer Shop Api", Version = "v1"});
+                
+                //Determine base path for the application.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+
+                //Set the comments path for the swagger json and ui.
+                var xmlPath = Path.Combine(basePath, "ComputerShop.API.xml"); 
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +112,12 @@ namespace ComputerShop.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Computer Shop Api");
             });
             
             //create db

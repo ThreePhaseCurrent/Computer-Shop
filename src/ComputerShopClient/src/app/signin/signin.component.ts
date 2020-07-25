@@ -109,7 +109,7 @@ export class SigninComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     this.resultSended = true;
     this.formResult = this.registerForm.value;
 

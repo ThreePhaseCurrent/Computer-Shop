@@ -35,6 +35,7 @@ export class AuthService {
   userNameChanger$ = this.userNameSubject$.asObservable();
 
   login(email: string, password: string, rememberMe: boolean): Observable<Login>{
+    console.log("sd");
       return this.http.post<Login>(`${baseURL}auth/login`, {UserLogin: email, UserPassword: password, RememberMe: rememberMe})
         .pipe(tap(loginData => {
           localStorage.setItem(ASSECC_TOKEN_KEY, loginData.accessToken);

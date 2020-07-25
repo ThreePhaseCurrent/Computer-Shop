@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ComputerShop.API.Data;
 using ComputerShop.API.Models;
+using ComputerShop.API.Validators;
 using ComputerShop.API.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -36,6 +37,13 @@ namespace ComputerShop.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] Register register)
         {
+            var validResult = await new RegisterValidator().ValidateAsync(register);
+
+            if (!validResult.IsValid)
+            {
+                return BadRequest();
+            }
+
             var user = new ApplicationUser()
             {
                 ProfileImage = "",
@@ -60,6 +68,11 @@ namespace ComputerShop.API.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Check username exist
+        /// </summary>
+        /// <param name="username">User name</param>
+        /// <returns>Returns True if username is not exist</returns>
         [Route("username-check/{username}")]
         [HttpGet]
         public async Task<bool> UserNameCheck(string username)
@@ -69,18 +82,18 @@ namespace ComputerShop.API.Controllers
 
             return user == null;
         }
-        
-        [Route("login")]
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return Unauthorized();
-        }
 
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] Login request)
         {
+            var validResult = await new LoginValidator().ValidateAsync(request);
+
+            if (!validResult.IsValid)
+            {
+                return BadRequest();
+            }
+
             var user = await _userManager.FindByEmailAsync(request.UserLogin);
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, 
                 request.UserPassword, false);
@@ -101,7 +114,7 @@ namespace ComputerShop.API.Controllers
         
 
         /// <summary>
-        /// 
+        /// Generate token for user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>

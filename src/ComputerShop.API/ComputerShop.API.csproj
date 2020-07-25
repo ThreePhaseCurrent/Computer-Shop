@@ -4,7 +4,12 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile>F:\Учёба\С#\My progect\ComputerShop\src\ComputerShop.API\ComputerShop.API.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
+      <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
@@ -12,8 +17,10 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+      <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
       <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
     </ItemGroup>
 

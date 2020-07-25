@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ComputerShop.API</name>
+    </assembly>
+    <members>
+        <member name="M:ComputerShop.API.Controllers.AuthController.UserNameCheck(System.String)">
+            <summary>
+            Check username exist
+            </summary>
+            <param name="username">User name</param>
+            <returns>Returns True if username is not exist</returns>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.AuthController.GetToken(ComputerShop.API.Data.ApplicationUser)">
+            <summary>
+            Generate token for user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
