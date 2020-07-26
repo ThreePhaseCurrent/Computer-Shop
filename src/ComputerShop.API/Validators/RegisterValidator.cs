@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComputerShop.API.Models;
+using ComputerShop.API.Validators.Extensions;
 using FluentValidation;
 
 namespace ComputerShop.API.Validators
@@ -16,7 +17,7 @@ namespace ComputerShop.API.Validators
             RuleFor(x => x.Email).EmailAddress().NotNull();
             RuleFor(x => x.UserName).NotNull();
             RuleFor(x => x.Password).NotNull();
-            RuleFor(x => x.Phone).NotNull();
+            RuleFor(x => x.Phone).NotNull().PhoneNumber();
         }
     }
 }

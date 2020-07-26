@@ -18,5 +18,10 @@
             <param name="user"></param>
             <returns></returns>
         </member>
+        <member name="T:ComputerShop.API.Validators.Extensions.PhoneNumberValidator">
+            <summary>
+            Phone number custom validator
+            </summary>
+        </member>
     </members>
 </doc>
