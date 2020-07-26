@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using FluentValidation;
 using FluentValidation.Validators;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -18,14 +17,6 @@ namespace ComputerShop.API.Validators.Extensions
 
         public PhoneNumberValidator() : base($"Is not phone number!")
         {
-        }
-    }
-    
-    public static class PhoneNumberValidatorExtension {
-        public static IRuleBuilderOptions<T, string> PhoneNumber<T>(
-            this IRuleBuilder<T, string> rule) 
-        {
-            return rule.SetValidator(new PhoneNumberValidator());
         }
     }
 }

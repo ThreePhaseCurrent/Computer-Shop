@@ -1,8 +1,15 @@
 using System;
 using System.IO;
+using AutoMapper;
 using ComputerShop.API.Data;
 using ComputerShop.API.Entities;
+using ComputerShop.API.Extensions;
+using ComputerShop.API.Mapping;
 using ComputerShop.API.Models;
+using ComputerShop.Core.Repositories;
+using ComputerShop.Core.Repositories.Interfaces;
+using ComputerShop.Core.Services;
+using ComputerShop.Core.Services.Interfaces;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +35,7 @@ namespace ComputerShop.API
         {
             Configuration = configuration;
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddDbContext<ApplicationDbContext>(options => 
@@ -41,6 +48,19 @@ namespace ComputerShop.API
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            
+            //register services
+            services.AddServices();
+            
+            services.AddAutoMapper(typeof(Startup));
+
+            var mapperConfig = new MapperConfiguration(expression =>
+            {
+                expression.AddProfile(new AutoMapping());
+            });
+            var mapper       = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
 
             var authOptionsConfig = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfig);

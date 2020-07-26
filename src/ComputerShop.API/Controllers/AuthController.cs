@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using ComputerShop.API.Data;
 using ComputerShop.API.Models;
 using ComputerShop.API.Validators;
@@ -14,7 +15,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-
 namespace ComputerShop.API.Controllers
 {
     [Route("api/[controller]")]
@@ -24,13 +24,15 @@ namespace ComputerShop.API.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOptions<AuthOptions> _authOptions;
-        
+        private IMapper _mapper;
+
         public AuthController(SignInManager<ApplicationUser> signInManager, IOptions<AuthOptions> authOptions, 
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             _signInManager = signInManager;
             _authOptions = authOptions;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         [Route("register")]
@@ -44,21 +46,8 @@ namespace ComputerShop.API.Controllers
                 return BadRequest();
             }
 
-            var user = new ApplicationUser()
-            {
-                ProfileImage = "",
-                FirstName = register.FirstName,
-                LastName = register.LastName,
-                Email = register.Email,
-                NormalizedEmail = register.Email.ToUpper(),
-                UserName = register.UserName,
-                NormalizedUserName = register.UserName.ToUpper(),
-                PhoneNumber = register.Phone,
-                EmailConfirmed = false,
-                PhoneNumberConfirmed = false,
-                SecurityStamp = Guid.NewGuid().ToString("D")
-            };
-            
+            var user = _mapper.Map<ApplicationUser>(register);
+
             var result = await _userManager.CreateAsync(user, register.Password);
             if (result.Succeeded)
             {

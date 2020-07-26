@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.API", "ComputerShop.API.csproj", "{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.Core", "..\ComputerShop.Core\ComputerShop.Core.csproj", "{58E65D4B-1D77-4852-AADE-CCC790FA087F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E65D4B-1D77-4852-AADE-CCC790FA087F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E65D4B-1D77-4852-AADE-CCC790FA087F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E65D4B-1D77-4852-AADE-CCC790FA087F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E65D4B-1D77-4852-AADE-CCC790FA087F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
