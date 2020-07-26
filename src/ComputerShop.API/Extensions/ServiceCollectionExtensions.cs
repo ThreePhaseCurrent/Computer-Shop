@@ -1,4 +1,5 @@
-﻿using ComputerShop.Core.Repositories;
+﻿using System.Threading.Tasks;
+using ComputerShop.Core.Repositories;
 using ComputerShop.Core.Repositories.Interfaces;
 using ComputerShop.Core.Services;
 using ComputerShop.Core.Services.Interfaces;
@@ -16,6 +17,7 @@ namespace ComputerShop.API.Extensions
         {
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient(typeof(ITokenService), typeof(TokenService));
         }
     }
 }

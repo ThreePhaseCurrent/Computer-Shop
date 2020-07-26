@@ -8,10 +8,12 @@ using ComputerShop.API.Data;
 using ComputerShop.API.Models;
 using ComputerShop.API.Validators;
 using ComputerShop.API.ViewModels;
+using ComputerShop.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,18 +23,18 @@ namespace ComputerShop.API.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IOptions<AuthOptions> _authOptions;
+        private ITokenService _tokenService;
         private IMapper _mapper;
+        private IUserService _userService;
+        private ILogger<AuthController> _logger;
 
-        public AuthController(SignInManager<ApplicationUser> signInManager, IOptions<AuthOptions> authOptions, 
-            UserManager<ApplicationUser> userManager, IMapper mapper)
+        public AuthController(IMapper mapper, IUserService userService, ITokenService tokenService,
+            ILogger<AuthController> logger)
         {
-            _signInManager = signInManager;
-            _authOptions = authOptions;
-            _userManager = userManager;
             _mapper = mapper;
+            _userService = userService;
+            _tokenService = tokenService;
+            _logger = logger;
         }
 
         [Route("register")]
@@ -43,14 +45,16 @@ namespace ComputerShop.API.Controllers
 
             if (!validResult.IsValid)
             {
+                _logger.Log(LogLevel.Information, "User data is not valid!");
                 return BadRequest();
             }
 
             var user = _mapper.Map<ApplicationUser>(register);
 
-            var result = await _userManager.CreateAsync(user, register.Password);
+            var result = await _userService.CreateUser(user, register.Password);
             if (result.Succeeded)
             {
+                _logger.Log(LogLevel.Information, "User was register!");
                 return Ok();
             }
 
@@ -66,7 +70,7 @@ namespace ComputerShop.API.Controllers
         [HttpGet]
         public async Task<bool> UserNameCheck(string username)
         {
-            var user = await _userManager.Users
+            var user = await _userService.Users
                 .FirstOrDefaultAsync(u => u.UserName == username);
 
             return user == null;
@@ -80,16 +84,19 @@ namespace ComputerShop.API.Controllers
 
             if (!validResult.IsValid)
             {
+                _logger.Log(LogLevel.Information, "User credentials is wrong!");
                 return BadRequest();
             }
 
-            var user = await _userManager.FindByEmailAsync(request.UserLogin);
-            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, 
-                request.UserPassword, false);
+            var signInResult = await _userService.UserSingIn(request);
 
             if (signInResult.Succeeded)
             {
-                var token = await GetToken(user);
+                var user = await _userService.Users.FirstOrDefaultAsync(x => 
+                    x.Email == request.UserLogin);
+                var token = await _tokenService.GetToken(user);
+                
+                _logger.Log(LogLevel.Information, "User was signin!");
             
                 return Ok(new LoginViewModel()
                 {
@@ -99,38 +106,6 @@ namespace ComputerShop.API.Controllers
             }
             
             return Unauthorized();
-        }
-        
-
-        /// <summary>
-        /// Generate token for user
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        private async Task<string> GetToken(ApplicationUser user)
-        {
-            var authParams = _authOptions.Value;
-
-            var securityKey = authParams.GetSymmetricSecurityKey();
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new List<Claim>()
-            {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id)
-            };
-
-            var roles = await _userManager.GetRolesAsync(user);
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim("role", role));
-            }
-            
-            var token = new JwtSecurityToken(authParams.Issuer, authParams.Audience, claims,
-                expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
