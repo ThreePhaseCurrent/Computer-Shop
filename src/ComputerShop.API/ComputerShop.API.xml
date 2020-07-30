@@ -11,13 +11,6 @@
             <param name="username">User name</param>
             <returns>Returns True if username is not exist</returns>
         </member>
-        <member name="M:ComputerShop.API.Controllers.AuthController.GetToken(ComputerShop.API.Data.ApplicationUser)">
-            <summary>
-            Generate token for user
-            </summary>
-            <param name="user"></param>
-            <returns></returns>
-        </member>
         <member name="M:ComputerShop.API.Extensions.ServiceCollectionExtensions.AddServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register services
@@ -54,6 +47,20 @@
             <param name="rule"></param>
             <param name="userManager"></param>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerShop.Core.Services.TokenService.GetToken(ComputerShop.API.Data.ApplicationUser)">
+            <summary>
+            Generate token for user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerShop.Core.Services.UserService.UserSingIn(ComputerShop.API.Models.Login)">
+            <summary>
+            
+            </summary>
+            <param name="login"></param>
             <returns></returns>
         </member>
     </members>

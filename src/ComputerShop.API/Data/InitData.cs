@@ -14,7 +14,7 @@ namespace ComputerShop.API.Data
         {
             var context = serviceProvider.GetService<ApplicationDbContext>();
 
-            string[] roles = { "Admin", "Client" };
+            string[] roles = { AuthorizationConstants.Roles.ADMIN, AuthorizationConstants.Roles.CLIENT };
 
             foreach (string role in roles)
             {

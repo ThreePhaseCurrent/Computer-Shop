@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.PortableExecutable;
 using ComputerShop.API.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,21 @@ namespace ComputerShop.API.Entities
             : base(options)
         {
         }
+        
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<CharacterValue> CharacterValues { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Delivery> Deliveries { get; set; }
+        public virtual DbSet<DeliveryCompany> DeliveryCompanies { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderList> OrderLists { get; set; }
+        public virtual DbSet<OrderType> OrderTypes { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<UserBasket> UserBaskets { get; set; }
+        public virtual DbSet<UserDevice> UserDevices { get; set; }
+        public virtual DbSet<Сharacteristic> Сharacteristics { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

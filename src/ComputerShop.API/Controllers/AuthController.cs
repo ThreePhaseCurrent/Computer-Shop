@@ -46,7 +46,13 @@ namespace ComputerShop.API.Controllers
             if (!validResult.IsValid)
             {
                 _logger.Log(LogLevel.Information, "User data is not valid!");
-                return BadRequest();
+
+                foreach (var error in validResult.Errors)
+                {
+                    ModelState.AddModelError(error.ErrorCode, error.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
             }
 
             var user = _mapper.Map<ApplicationUser>(register);
@@ -85,7 +91,13 @@ namespace ComputerShop.API.Controllers
             if (!validResult.IsValid)
             {
                 _logger.Log(LogLevel.Information, "User credentials is wrong!");
-                return BadRequest();
+                
+                foreach (var error in validResult.Errors)
+                {
+                    ModelState.AddModelError(error.ErrorCode, error.ErrorMessage);
+                }
+                
+                return BadRequest(ModelState);
             }
 
             var signInResult = await _userService.UserSingIn(request);

@@ -18,6 +18,7 @@ namespace ComputerShop.API.Extensions
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddTransient(typeof(IUserService), typeof(UserService));
             services.AddTransient(typeof(ITokenService), typeof(TokenService));
+            services.AddTransient(typeof(IProductService), typeof(ProductService));
         }
     }
 }
