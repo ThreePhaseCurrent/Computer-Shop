@@ -11,11 +11,11 @@ namespace ComputerShop.Core.Repositories
     {
         private ApplicationDbContext _context;
 
-        public ProductRepository(ApplicationDbContext context)
+        public ProductRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
 
-        public IQueryable<Product> Products => _context.Products;
+        public IQueryable<Product> Products => _context.Product;
     }
 }

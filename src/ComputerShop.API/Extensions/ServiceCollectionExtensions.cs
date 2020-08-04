@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ComputerShop.API.Extensions
 {
+    /// <summary>
+    /// Extensions for service collection
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>

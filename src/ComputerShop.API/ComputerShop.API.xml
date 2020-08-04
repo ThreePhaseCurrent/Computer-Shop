@@ -11,11 +11,21 @@
             <param name="username">User name</param>
             <returns>Returns True if username is not exist</returns>
         </member>
+        <member name="T:ComputerShop.API.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extensions for service collection
+            </summary>
+        </member>
         <member name="M:ComputerShop.API.Extensions.ServiceCollectionExtensions.AddServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register services
             </summary>
             <param name="services"></param>
+        </member>
+        <member name="T:ComputerShop.API.Models.ProductViewParameters">
+            <summary>
+            Parameters for pagination product
+            </summary>
         </member>
         <member name="T:ComputerShop.API.Validators.Extensions.PhoneNumberValidator">
             <summary>

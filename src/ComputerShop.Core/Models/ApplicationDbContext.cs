@@ -14,7 +14,7 @@ namespace ComputerShop.API.Entities
         {
         }
         
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<CharacterValue> CharacterValues { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }

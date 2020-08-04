@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ComputerShop.API.Entities;
 using ComputerShop.Core.Repositories.Interfaces;
@@ -20,9 +21,8 @@ namespace ComputerShop.Core.Repositories
             _context = context;
         }
 
-        protected EfRepository(){}
-
-        public async Task<List<T>> GetAll() => 
+        public IQueryable<T> GetAll() => _context.Set<T>();
+        public async Task<List<T>> GetAllAsync() => 
             await _context.Set<T>().ToListAsync();
 
         public async Task Add(T entity) => 
