@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HomeService} from '../services/home.service';
-import { AuthService } from '../services/auth.service';
+import {HomeService} from '../../services/home.service';
+import { AuthService } from '../../services/auth.service';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyService } from '../services/destroy.service';
+import { DestroyService } from '../../services/destroy.service';
 import { HttpHeaders } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 

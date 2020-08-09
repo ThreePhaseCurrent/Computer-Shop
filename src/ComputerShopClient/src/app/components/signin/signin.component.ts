@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchCountryField, TooltipLabel, CountryISO } from 'ngx-intl-tel-input';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { UserNameValidator } from '../validators/userNameValidator';
+import { AuthService } from '../../services/auth.service';
+import { UserNameValidator } from '../../validators/userNameValidator';
 import { map, flatMap, switchMap } from 'rxjs/operators';
-import { Register } from '../models/register';
+import { Register } from '../../models/register';
 
 @Component({
   selector: 'app-signin',
