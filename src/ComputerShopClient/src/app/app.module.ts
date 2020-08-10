@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
+import { EffectsModule } from '@ngrx/effects';
 
 
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { environment } from 'src/environments/environment';
 import { baseURL } from './shared/baseurl';
 
 import 'hammerjs';
+import { AuthEffects } from './store/effects/auth.effects';
 
 export function tokenGetter(){
   return localStorage.getItem(ASSECC_TOKEN_KEY);
@@ -71,6 +73,7 @@ export function tokenGetter(){
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    EffectsModule.forRoot([AuthEffects]),
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
