@@ -6,6 +6,8 @@ import { DestroyService } from '../../services/destroy.service';
 import { HttpHeaders } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 
+import * as AOS from 'aos';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,6 +34,8 @@ export class HomeComponent implements OnInit {
       errorMsg =>{
         this.getDataError = <any>errorMsg;
       });
+
+      AOS.init();
     }
 
   //get data from server

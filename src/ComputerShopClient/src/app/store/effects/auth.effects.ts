@@ -16,15 +16,19 @@ export class AuthEffects {
     @Effect()
     logIn$: Observable<any> = this.actions.pipe(
         ofType<LogIn>(AuthActionTypes.LOGIN),
-        switchMap((action) => {
+        map(action => action.user),
+        switchMap(user => {
             return this.authService.login(
-                action.user.email, 
-                action.user.password,
-                action.user.rememberMe)
-            .pipe(
-                map(result => new LogInSuccess(result)),
-                catchError(error => of(new LogInFiled(error)))
-            );
+                user.email, 
+                user.password, 
+                user.rememberMe)
+                .pipe(
+                    map(result => new LogInSuccess(result)),
+                    catchError(error => {
+                        console.log(error);
+                        return of(new LogInFiled(error));
+                    })
+                );
         })
     )
 }

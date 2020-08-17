@@ -22,3 +22,28 @@ $background-moredark: #2b29a3;
 .logo {
     margin-right: 10px;
 }
+
+.transparent.scrolled {
+    background: #2D2D2D;
+  }
+
+  .transparent {
+    transition: 750ms ease;
+  }
+
+  .navbar-nav a {
+      color: white;
+  }
+
+  .navbar-brand {
+      color: white;
+  }
+
+  .navbar-nav a:hover {
+    border-bottom: 3px solid orange;
+  }
+
+  .navbar-nav a.active {
+    border-bottom: 3px solid orange;
+    background-color: transparent;
+  }

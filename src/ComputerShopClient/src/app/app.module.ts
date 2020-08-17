@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -22,10 +22,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
 import { EffectsModule } from '@ngrx/effects';
-
+import { StoreModule } from '@ngrx/store';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,8 +43,13 @@ import { AuthGuard } from './app-routing/auth-guard';
 import { environment } from 'src/environments/environment';
 import { baseURL } from './shared/baseurl';
 
-import 'hammerjs';
+import { appReducers } from './store/reducers/app.reducers';
+
+//import 'hammerjs';
 import { AuthEffects } from './store/effects/auth.effects';
+
+export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer', 
+{factory: () => (appReducers)});
 
 export function tokenGetter(){
   return localStorage.getItem(ASSECC_TOKEN_KEY);
@@ -78,9 +85,13 @@ export function tokenGetter(){
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
+    CollapseModule.forRoot(),
+    
     ReactiveFormsModule,
-    BsDropdownModule.forRoot(), 
     NgxIntlTelInputModule,
+    StoreModule.forRoot(ROOT_REDUCER),
 
     MDBBootstrapModule.forRoot(),
 
@@ -91,8 +102,7 @@ export function tokenGetter(){
       }
     }),
 
-    FontAwesomeModule
-
+    FontAwesomeModule,
     ],
   providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService, AuthGuard],
   entryComponents: [],

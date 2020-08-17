@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DestroyService } from '../../services/destroy.service';
+
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,13 @@ export class HeaderComponent implements OnInit {
   userName: string;
 
   constructor(private authService: AuthService,
-    private destroy$: DestroyService) { }
+    private destroy$: DestroyService) { 
+
+      var testScript = document.createElement("script");
+      testScript.setAttribute("id", "testScript");
+      testScript.setAttribute("src", "../../../assets/js/test.js");
+      document.body.appendChild(testScript);
+    }
 
   public get isLoggedIn(): boolean{
     return this.authService.isAuthenticated();
@@ -27,6 +35,9 @@ export class HeaderComponent implements OnInit {
     .subscribe(user =>{
       this.userName = <string>user;
     });
+
+
+    AOS.init();
   }
 
 }

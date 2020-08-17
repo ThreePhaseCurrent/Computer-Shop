@@ -1,30 +1,60 @@
-<mat-toolbar color="primary">
-    <!-- <span><img src="/assets/images/logo.png" height=30 width=41></span> -->
-    <h1 class="logo">Computer Shop</h1>
-    <span class="menu-spacer"></span>
-    <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span> Home</a>
-    <span class="flex-spacer"></span>
-
-
-    <div *ngIf='!isLoggedIn'>
-        <button mat-button routerLink='/login'>
-            <mat-icon>login</mat-icon>
-            Login
-        </button>
-
-        <button mat-button routerLink='/signin'>
-            <mat-icon>login</mat-icon>
-            Sign In
-        </button>
-    </div>
-    
-
-    <button *ngIf='isLoggedIn' mat-button (click)="logout()">
-        <div>
-            {{userName}}
-        </div>
-
-        <mat-icon>power_settings_new</mat-icon>
-        Logout
+<!-- <nav class="navbar fixed-top navbar-expand-sm transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-  </mat-toolbar>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown dmenu">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+          Our Service
+        </a>
+        <div class="dropdown-menu sm-menu">
+          <a class="dropdown-item text-white" href="#">service2</a>
+          <a class="dropdown-item text-white" href="#">service 2</a>
+          <a class="dropdown-item text-white" href="#">service 3</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Call</a>
+      </li>
+      </ul>
+      <div class="social-part">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+      </div>
+    </div>
+  </nav> -->
+
+
+  <nav class="navbar navbar-expand-md fixed-top transparent">
+    <a href="#" class="navbar-brand">Computer Shop</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon">
+          
+        </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link active">Home</a>
+            <a href="#" class="nav-item nav-link">Profile</a>
+            <a href="#" class="nav-item nav-link">Messages</a>
+            <a href="#" class="nav-item nav-link" tabindex="-1">Reports</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a href="#" class="nav-item nav-link">LogIn</a>
+            <a href="#" class="nav-item nav-link">SignUp</a>
+        </div>
+    </div>
+</nav>
