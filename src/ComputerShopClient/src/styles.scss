@@ -103,34 +103,14 @@ $divider-color:        #BDBDBD;
   z-index:-1;
 }
 
-.login-wrapper .example-form {
-  min-width:100%;
-  max-width:400px;
+.full-width {
   width:100%;
 }
 
-.login-wrapper .example-full-width,.login-wrapper .btn-block {
-  width:100%;
+.login-form-overlay {
+  background-color: rgb(10, 27, 66, 0.7);
 }
 
-.login-wrapper mat-card-header {
-  text-align:center;
-  width:100%;
-  display:block;
-  font-weight:700;
+.mat-dialog-container {
+  border: 1.5px solid orange;
 }
-
-.login-wrapper mat-card-header mat-card-title {
-  font-size:30px;
-  margin:0;
-}
-
-.login-wrapper .mat-card {
-  padding:40px 70px 50px;
-}
-
-.login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
-  padding:0.8375em 0;
-}
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';

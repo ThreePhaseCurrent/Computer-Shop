@@ -105,7 +105,7 @@ export function tokenGetter(){
     FontAwesomeModule,
     ],
   providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService, AuthGuard],
-  entryComponents: [],
+  entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
