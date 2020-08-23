@@ -1,10 +1,12 @@
-  <div class="container login-container" data-aos="fade-down">
+<div class="container login-container" data-aos="fade-down">
 
+  <!--Form login-->
+  <div *ngIf="!(completeAuth$ | async) && !(isLoading$ | async)">
     <form novalidate [formGroup]='loginForm' (ngSubmit)="onSubmit()">
 
       <div class="row mb-2">
-        <div class="col-12 d-flex justify-content-center" style="font: 'Josefin Sans', sans-serif; font-size: 180%;">
-          <p class="orange-border-bottom">
+        <div class="col-12 d-flex justify-content-center">
+          <p id="login-label" class="orange-border-bottom">
             Login
           </p>
         </div>
@@ -12,14 +14,22 @@
 
       <mat-card-content>
         <mat-form-field class="full-width">
-          <input matInput formControlName='username' placeholder="Username">
+          <input matInput formControlName='email' placeholder="Email">
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <input matInput formControlName='password' placeholder="Password">
         </mat-form-field>
 
-        <mat-checkbox formControlName='rememberMe' style="color: chocolate;">Rememver me?</mat-checkbox>
+        <!--errors-->
+        <div *ngIf="hasError$ | async">
+          <p style="color: red">
+            Login or password is invalid!
+          </p>
+        </div>
+
+        <mat-checkbox formControlName='rememberMe' style="color: chocolate;">Remember me?</mat-checkbox>
+
       </mat-card-content>
 
       <div class="row mt-4">
@@ -28,5 +38,21 @@
         </div>
       </div>
     </form>
-
   </div>
+  <!-- end form login-->
+
+  <div>
+    <div class="row" *ngIf="(isLoading$ | async)">
+      <div class="col-12 d-flex justify-content-center">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="completeAuth$ | async">
+      <div class="col-12 d-flex justify-content-center">
+        <span>Success!</span>
+      </div>
+    </div>
+  </div>
+
+</div>

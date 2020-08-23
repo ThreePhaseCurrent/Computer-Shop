@@ -25,7 +25,7 @@ export class AuthService {
     private http: HttpClient,
     private httpMsgService: ProcessHttpmsgService) { }
 
-  isAuth: boolean; 
+  isAuth: boolean;
   userName: string;
 
   private isAuthSubject$ = new BehaviorSubject<boolean>(this.isAuth);
@@ -34,19 +34,23 @@ export class AuthService {
   private userNameSubject$ = new BehaviorSubject<string>(this.userName);
   userNameChanger$ = this.userNameSubject$.asObservable();
 
-  login(email: string, password: string, rememberMe: boolean): Observable<Login>{
-    console.log("sd");
-      return this.http.post<Login>(`${baseURL}auth/login`, {UserLogin: email, UserPassword: password, RememberMe: rememberMe})
+  login(email: string, password: string, rememberMe: boolean): Observable<Login> {
+      console.log(`${email} ${rememberMe} ${password}`);
+      return this.http.post<Login>(`${baseURL}auth/login`,
+        {
+          UserLogin: email,
+          UserPassword: password,
+          RememberMe: rememberMe
+        })
         .pipe(tap(loginData => {
           localStorage.setItem(ASSECC_TOKEN_KEY, loginData.accessToken);
 
           this.isAuth = true;
           this.isAuthSubject$.next(this.isAuth);
 
-          this.userName = loginData.userName;
+          this.userName = loginData.email;
           this.userNameSubject$.next(this.userName);
-        }))
-        .pipe(catchError(this.httpMsgService.handleError));
+        }));
   }
 
   isAuthenticated(): boolean{
@@ -75,7 +79,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem(ASSECC_TOKEN_KEY);
-    
+
     this.isAuth = false;
     this.isAuthSubject$.next(this.isAuth);
 

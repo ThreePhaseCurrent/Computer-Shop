@@ -19,16 +19,15 @@ export class AuthEffects {
         map(action => action.user),
         switchMap(user => {
             return this.authService.login(
-                user.email, 
-                user.password, 
+                user.email,
+                user.password,
                 user.rememberMe)
                 .pipe(
                     map(result => new LogInSuccess(result)),
                     catchError(error => {
-                        console.log(error);
                         return of(new LogInFiled(error));
                     })
                 );
         })
-    )
+    );
 }

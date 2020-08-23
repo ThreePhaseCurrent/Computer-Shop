@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 import * as AOS from 'aos';
 import { FormBuilder, Form, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import {Action, select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/states/app.states';
-import { LogIn } from 'src/app/store/actions/user.actions';
+import {AuthActionTypes, LogIn} from 'src/app/store/actions/user.actions';
+import {UserLogin} from "../../models/UserLogin";
+import {MatDialogRef} from "@angular/material/dialog";
+import {getLoading, getLoggedIn, selectAuth, selectError} from "../../store/selectors/auth.selectors";
 
 @Component({
   selector: 'app-login',
@@ -15,51 +18,47 @@ import { LogIn } from 'src/app/store/actions/user.actions';
 })
 export class LoginComponent implements OnInit {
 
-  user = {username: '', password: '', remember: false};
-
+  user: UserLogin;
   loginForm: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private _store: Store<IAppState>) {
+  completeAuth$;
+  hasError$;
+  isLoading$;
 
-      this.createForm();
-   }
-  
-  isAuth: boolean;
-  loginError: string;
+constructor(
+  private authService: AuthService,
+  private fb: FormBuilder,
+  private _store: Store<IAppState>,
+  public dialogRef: MatDialogRef<LoginComponent>) {
 
-  private inventorySubject$ = new BehaviorSubject<boolean>(this.isAuth);
-  inventoryChanger$ = this.inventorySubject$.asObservable();
+    this.createForm();
+
+    this.completeAuth$ = this._store.pipe(select(getLoggedIn));
+    this.hasError$ = this._store.pipe(select(selectError));
+    this.isLoading$ = this._store.pipe(select(getLoading));
+ }
 
   ngOnInit(): void {
-    // this.authService.inventoryChanger$.subscribe(sbj => {
-    //   if(sbj){}
-    // });
-
     AOS.init();
   }
 
   createForm() {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       rememberMe: ['']
     });
   }
 
   onSubmit(){
-    // this.authService.login(this.user.username, this.user.password, this.user.remember)
-    //   .subscribe(login => {
-    //     this.isAuth = true;
-    //     },
-    //   errorMsg => {
-    //     this.loginError = <any>errorMsg;
-    //   });
+    this.user = this.loginForm.value;
 
-    console.log(this.loginForm.value);
     this._store.dispatch(new LogIn(this.user));
+    this.completeAuth$.subscribe(x => {
+      if(x === true){
+        this.dialogRef.close();
+      }
+    });
   }
 
 }

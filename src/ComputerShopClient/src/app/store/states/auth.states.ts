@@ -1,13 +1,17 @@
 import { User } from '../../models/user';
 
 export interface IAuthState {
-    isAuthenticated: boolean;
-    user: User | null;
-    errorMessage: string | null;
+  user: User | null;
+  hasError: boolean;
+  errorMessage: string | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
 }
 
 export const initialAuthState: IAuthState = {
-    isAuthenticated: false,
-    user: null,
-    errorMessage: null
+  user: null,
+  hasError: false,
+  errorMessage: null,
+  isAuthenticated: false,
+  isLoading: false
 };

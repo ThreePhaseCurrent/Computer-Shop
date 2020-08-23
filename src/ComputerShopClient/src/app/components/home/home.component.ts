@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
     private destroy$: DestroyService) { }
 
   ngOnInit(): void {
-      this.authService.isAuthChanger$.pipe(takeUntil(this.destroy$)).subscribe(sbj => 
+      this.authService.isAuthChanger$.pipe(takeUntil(this.destroy$)).subscribe(sbj =>
         {
           if(sbj)
           {
             this.getHomeData();
-          } 
+          }
         },
       errorMsg =>{
         this.getDataError = <any>errorMsg;

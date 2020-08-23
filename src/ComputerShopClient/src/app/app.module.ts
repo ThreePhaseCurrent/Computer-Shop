@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,11 +18,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -47,8 +47,9 @@ import { appReducers } from './store/reducers/app.reducers';
 
 //import 'hammerjs';
 import { AuthEffects } from './store/effects/auth.effects';
+import {HttpErrorsInterceptorService} from "./interceptors/httperrors.interceptor";
 
-export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer', 
+export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer',
 {factory: () => (appReducers)});
 
 export function tokenGetter(){
@@ -88,7 +89,7 @@ export function tokenGetter(){
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     CollapseModule.forRoot(),
-    
+
     ReactiveFormsModule,
     NgxIntlTelInputModule,
     StoreModule.forRoot(ROOT_REDUCER),
@@ -104,7 +105,10 @@ export function tokenGetter(){
 
     FontAwesomeModule,
     ],
-  providers: [HomeService, {provide: 'BaseUrl', useValue: baseURL}, AuthService, AuthGuard],
+  providers: [HomeService, AuthService, AuthGuard,
+    { provide: 'BaseUrl', useValue: baseURL },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorsInterceptorService, multi: true }
+    ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
