@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using ComputerShop.API.Data;
-using ComputerShop.API.Entities;
 using ComputerShop.API.Models;
+using ComputerShop.Core.Constants;
+using ComputerShop.Core.Entities;
 using ComputerShop.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -32,7 +32,7 @@ namespace ComputerShop.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromBody]Product product)
+        public async Task<IActionResult> AddProduct([FromBody] Product product)
         {
             await _productService.Add(product);
 

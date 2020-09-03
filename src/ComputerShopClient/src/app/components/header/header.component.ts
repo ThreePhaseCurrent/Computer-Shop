@@ -1,10 +1,14 @@
 import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import {ACCESS_USERNAME_KEY, ACCESS_TOKEN_KEY, AuthService} from '../../services/auth.service';
 import { DestroyService } from '../../services/destroy.service';
 
 import * as AOS from 'aos';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import {User} from "../../models/user";
+import {Store} from "@ngrx/store";
+import {IAppState} from "../../store/states/app.states";
+import {selectUser} from "../../store/selectors/auth.selectors";
 
 @Component({
   selector: 'app-header',
@@ -14,16 +18,26 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
 
   userName: string;
+  user = new User();
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private destroy$: DestroyService,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog,
+    private _store: Store<IAppState>) {
 
-      this.initScripts();
-      AOS.init();
+  this.initScripts();
+    AOS.init();
+
+    if(!this.isLoggedIn) {
+      this._store.select(selectUser).subscribe(x => this.user = x);
+    } else {
+      this.user.accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+      this.user.userName = localStorage.getItem(ACCESS_USERNAME_KEY);
     }
+  }
 
-  public get isLoggedIn(): boolean{
+  public get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
 

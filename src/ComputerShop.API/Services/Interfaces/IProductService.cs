@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ComputerShop.API.Entities;
 using ComputerShop.API.Models;
-using ComputerShop.Core.Repositories.Interfaces;
+using ComputerShop.Core.Entities;
+using ComputerShop.Core.Interfaces;
 
 namespace ComputerShop.Core.Services.Interfaces
 {

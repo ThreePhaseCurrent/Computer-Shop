@@ -1,4 +1,4 @@
-﻿using ComputerShop.API.Data;
+﻿using ComputerShop.Core.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 

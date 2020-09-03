@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ComputerShop.API.Data;
-using ComputerShop.API.Entities;
-using ComputerShop.Core.Repositories.Interfaces;
+using ComputerShop.Core.Entities;
+using ComputerShop.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ComputerShop.Core.Repositories
+namespace ComputerShop.Infrastructure.Data
 {
     public class UserRepository : IUserRepository
     {

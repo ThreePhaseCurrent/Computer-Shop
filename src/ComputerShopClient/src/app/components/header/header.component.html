@@ -13,9 +13,25 @@
             <a href="#" class="nav-item nav-link">Messages</a>
             <a href="#" class="nav-item nav-link" tabindex="-1">Reports</a>
         </div>
-        <div class="navbar-nav ml-auto">
+
+        <div class="navbar-nav ml-auto" *ngIf="!user">
             <a class="nav-item nav-link" (click)='openLoginForm()' style="cursor: pointer">LogIn</a>
             <a href="#" class="nav-item nav-link">SignUp</a>
         </div>
+
+        <!--user info-->
+        <div class="navbar-nav ml-auto" *ngIf="user">
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"> {{user.userName}} </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item text-black-50" href="#">Profile</a>
+              <a class="dropdown-divider" href="#"></a>
+              <a class="dropdown-item text-black-50" href="#" (click)="logout()">Logout</a>
+            </div>
+          </div>
+        </div>
+        <!--end user info-->
+
     </div>
 </nav>

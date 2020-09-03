@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ComputerShop.API.Entities;
 using ComputerShop.API.Models;
-using ComputerShop.Core.Repositories;
+using ComputerShop.Core.Entities;
 using ComputerShop.Core.Services.Interfaces;
+using ComputerShop.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace ComputerShop.Core.Services

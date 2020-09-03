@@ -1,10 +1,7 @@
 ﻿using System.Linq;
-using ComputerShop.API.Data;
-using FluentValidation;
-using FluentValidation.Resources;
+using ComputerShop.Core.Entities;
 using FluentValidation.Validators;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace ComputerShop.API.Validators.Extensions
 {

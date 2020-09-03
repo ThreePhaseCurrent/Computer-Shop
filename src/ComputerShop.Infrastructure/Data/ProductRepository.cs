@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ComputerShop.API.Entities;
-using ComputerShop.Core.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using ComputerShop.Core.Entities;
+using ComputerShop.Core.Interfaces;
 
-namespace ComputerShop.Core.Repositories
+namespace ComputerShop.Infrastructure.Data
 {
     public class ProductRepository : EfRepository<Product>, IProductRepository
     {

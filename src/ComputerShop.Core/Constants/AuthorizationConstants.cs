@@ -1,4 +1,4 @@
-﻿namespace ComputerShop.API.Data
+﻿namespace ComputerShop.Core.Constants
 {
     public static class AuthorizationConstants
     {

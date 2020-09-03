@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ComputerShop.API.Entities
+namespace ComputerShop.Core.Entities
 {
     public class Delivery
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ComputerShop.API.Data;
+using ComputerShop.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace ComputerShop.Core.Repositories.Interfaces
+namespace ComputerShop.Core.Interfaces
 {
     public interface IUserRepository
     {

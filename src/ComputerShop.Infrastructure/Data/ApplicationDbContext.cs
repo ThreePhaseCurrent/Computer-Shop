@@ -1,11 +1,8 @@
-﻿using System;
-using System.Reflection.PortableExecutable;
-using ComputerShop.API.Data;
+﻿using ComputerShop.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ComputerShop.API.Entities
+namespace ComputerShop.Infrastructure.Data
 {
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

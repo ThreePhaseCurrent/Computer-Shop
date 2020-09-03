@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
-using ComputerShop.API.Data;
-using ComputerShop.API.Models;
-using ComputerShop.Core.Repositories.Interfaces;
+using ComputerShop.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
-namespace ComputerShop.Core.Services.Interfaces
+namespace ComputerShop.API.Services.Interfaces
 {
     public interface IUserService: IUserRepository
     {
-        Task<SignInResult> UserSingIn(Login login);
+        Task<SignInResult> UserSingIn(string login, string password, bool rememberMe);
     }
 }

@@ -10,6 +10,7 @@ export const authReducers = (
         case AuthActionTypes.LOGIN:
           return {
             ...state,
+            user: null,
             hasError: false,
             errorMessage: null,
             isAuthenticated: false,
@@ -19,6 +20,7 @@ export const authReducers = (
         case AuthActionTypes.LOGIN_SUCCESS:
           return {
             ...state,
+            user: action.payload,
             hasError: false,
             errorMessage: null,
             isAuthenticated: true,
@@ -28,6 +30,7 @@ export const authReducers = (
         case AuthActionTypes.LOGIN_FAIL:
           return {
             ...state,
+            user: null,
             hasError: true,
             errorMessage: action.payload,
             isAuthenticated: false,

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace ComputerShop.Core.Repositories.Interfaces
+namespace ComputerShop.Core.Interfaces
 {
     /// <typeparam name="T">Entity</typeparam>
     public interface IAsyncRepository<T>

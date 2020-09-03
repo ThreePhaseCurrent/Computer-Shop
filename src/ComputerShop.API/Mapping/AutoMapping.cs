@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
-using ComputerShop.API.Data;
 using ComputerShop.API.Models;
+using ComputerShop.Core.Entities;
 
 namespace ComputerShop.API.Mapping
 {

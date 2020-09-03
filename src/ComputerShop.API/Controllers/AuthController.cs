@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
-using ComputerShop.API.Data;
 using ComputerShop.API.Models;
+using ComputerShop.API.Services.Interfaces;
 using ComputerShop.API.Validators;
 using ComputerShop.API.ViewModels;
+using ComputerShop.Core.Entities;
 using ComputerShop.Core.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ComputerShop.API.Controllers
 {
@@ -100,7 +93,7 @@ namespace ComputerShop.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var signInResult = await _userService.UserSingIn(request);
+            var signInResult = await _userService.UserSingIn(request.UserLogin, request.UserPassword, request.RememberMe);
 
             if (signInResult.Succeeded)
             {

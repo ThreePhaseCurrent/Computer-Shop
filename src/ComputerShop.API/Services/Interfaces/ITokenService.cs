@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ComputerShop.API.Data;
+using ComputerShop.Core.Entities;
 
 namespace ComputerShop.Core.Services.Interfaces
 {

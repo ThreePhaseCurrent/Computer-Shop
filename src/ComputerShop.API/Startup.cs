@@ -1,15 +1,11 @@
 using System;
 using System.IO;
 using AutoMapper;
-using ComputerShop.API.Data;
-using ComputerShop.API.Entities;
 using ComputerShop.API.Extensions;
 using ComputerShop.API.Mapping;
 using ComputerShop.API.Models;
-using ComputerShop.Core.Repositories;
-using ComputerShop.Core.Repositories.Interfaces;
-using ComputerShop.Core.Services;
-using ComputerShop.Core.Services.Interfaces;
+using ComputerShop.Core.Entities;
+using ComputerShop.Infrastructure.Data;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

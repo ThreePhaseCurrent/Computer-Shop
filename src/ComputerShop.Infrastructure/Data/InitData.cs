@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ComputerShop.API.Entities;
+using ComputerShop.Core.Constants;
+using ComputerShop.Core.Entities;
+using ComputerShop.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ComputerShop.API.Data
+namespace ComputerShop.Infrastructure.Data
 {
     public class InitData
     {

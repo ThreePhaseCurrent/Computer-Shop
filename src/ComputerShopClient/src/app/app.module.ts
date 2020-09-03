@@ -37,7 +37,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
 
 import { HomeService } from './services/home.service';
-import {ASSECC_TOKEN_KEY, AuthService} from './services/auth.service';
+import {ACCESS_TOKEN_KEY, AuthService} from './services/auth.service';
 
 import { AuthGuard } from './app-routing/auth-guard';
 import { environment } from 'src/environments/environment';
@@ -53,7 +53,7 @@ export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer',
 {factory: () => (appReducers)});
 
 export function tokenGetter(){
-  return localStorage.getItem(ASSECC_TOKEN_KEY);
+  return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
 @NgModule({

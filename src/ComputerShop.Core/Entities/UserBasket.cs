@@ -1,6 +1,5 @@
-﻿using ComputerShop.API.Data;
-
-namespace ComputerShop.API.Entities
+﻿
+namespace ComputerShop.Core.Entities
 {
     public class UserBasket
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ComputerShop.API.Entities
+namespace ComputerShop.Core.Entities
 {
     public class Manufacturer
     {

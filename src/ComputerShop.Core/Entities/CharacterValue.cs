@@ -1,5 +1,5 @@
 ﻿
-namespace ComputerShop.API.Entities
+namespace ComputerShop.Core.Entities
 {
     public class CharacterValue
     {

@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ComputerShop.Core\ComputerShop.Core.csproj" />
+      <ProjectReference Include="..\ComputerShop.Infrastructure\ComputerShop.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

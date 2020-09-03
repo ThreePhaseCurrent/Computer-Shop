@@ -27,6 +27,13 @@
             Parameters for pagination product
             </summary>
         </member>
+        <member name="M:ComputerShop.API.Services.UserService.UserSingIn(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
         <member name="T:ComputerShop.API.Validators.Extensions.PhoneNumberValidator">
             <summary>
             Phone number custom validator
@@ -50,7 +57,7 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:ComputerShop.API.Validators.Extensions.ValidatorExtension.UniqueUserName``1(FluentValidation.IRuleBuilder{``0,System.String},Microsoft.AspNetCore.Identity.UserManager{ComputerShop.API.Data.ApplicationUser})">
+        <member name="M:ComputerShop.API.Validators.Extensions.ValidatorExtension.UniqueUserName``1(FluentValidation.IRuleBuilder{``0,System.String},Microsoft.AspNetCore.Identity.UserManager{ComputerShop.Core.Entities.ApplicationUser})">
             <summary>
             Check that the username is unique
             </summary>
@@ -59,18 +66,11 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:ComputerShop.Core.Services.TokenService.GetToken(ComputerShop.API.Data.ApplicationUser)">
+        <member name="M:ComputerShop.Core.Services.TokenService.GetToken(ComputerShop.Core.Entities.ApplicationUser)">
             <summary>
             Generate token for user
             </summary>
             <param name="user"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ComputerShop.Core.Services.UserService.UserSingIn(ComputerShop.API.Models.Login)">
-            <summary>
-            
-            </summary>
-            <param name="login"></param>
             <returns></returns>
         </member>
     </members>

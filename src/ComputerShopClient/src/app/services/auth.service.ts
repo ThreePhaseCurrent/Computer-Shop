@@ -9,10 +9,10 @@ import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 import { tap, catchError } from 'rxjs/operators';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
-import { utf8Encode } from '@angular/compiler/src/util';
 import { Register } from '../models/register';
 
-export const ASSECC_TOKEN_KEY = "access_token";
+export const ACCESS_TOKEN_KEY = "access_token";
+export const ACCESS_USERNAME_KEY = "access_username";
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,8 @@ export class AuthService {
           RememberMe: rememberMe
         })
         .pipe(tap(loginData => {
-          localStorage.setItem(ASSECC_TOKEN_KEY, loginData.accessToken);
+          localStorage.setItem(ACCESS_TOKEN_KEY, loginData.accessToken);
+          localStorage.setItem(ACCESS_USERNAME_KEY, loginData.email);
 
           this.isAuth = true;
           this.isAuthSubject$.next(this.isAuth);
@@ -53,8 +54,8 @@ export class AuthService {
         }));
   }
 
-  isAuthenticated(): boolean{
-    var token = localStorage.getItem(ASSECC_TOKEN_KEY);
+  isAuthenticated(): boolean {
+    var token = localStorage.getItem(ACCESS_TOKEN_KEY);
     return token && !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -78,7 +79,7 @@ export class AuthService {
   }
 
   logout(){
-    localStorage.removeItem(ASSECC_TOKEN_KEY);
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
 
     this.isAuth = false;
     this.isAuthSubject$.next(this.isAuth);

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using ComputerShop.API.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace ComputerShop.API.Data
+namespace ComputerShop.Core.Entities
 {
     public class ApplicationUser : IdentityUser
     {

@@ -1,18 +1,15 @@
 ﻿using System.Threading.Tasks;
-using ComputerShop.API.Data;
-using ComputerShop.API.Entities;
-using ComputerShop.API.Models;
-using ComputerShop.Core.Repositories;
-using ComputerShop.Core.Repositories.Interfaces;
-using ComputerShop.Core.Services.Interfaces;
+using ComputerShop.API.Services.Interfaces;
+using ComputerShop.Core.Entities;
+using ComputerShop.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 
-namespace ComputerShop.Core.Services
+namespace ComputerShop.API.Services
 {
     public class UserService : UserRepository, IUserService
     {
-        private SignInManager<ApplicationUser> _signInManager;
-        private UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         
         public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager) 
             : base(userManager)
@@ -34,11 +31,10 @@ namespace ComputerShop.Core.Services
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public async Task<SignInResult> UserSingIn(Login login)
+        public async Task<SignInResult> UserSingIn(string login, string password, bool rememberMe)
         {
-            var user = await _userManager.FindByEmailAsync(login.UserLogin);
-            return  await _signInManager.CheckPasswordSignInAsync(user, 
-                login.UserPassword, false);
+            var user = await _userManager.FindByEmailAsync(login);
+            return  await _signInManager.CheckPasswordSignInAsync(user, password, false);
         }
     }
 }
