@@ -1,0 +1,22 @@
+<mat-sidenav-container class="mt-5">
+  <mat-sidenav [(opened)]="sideNavOpened"></mat-sidenav>
+  <mat-sidenav-content>
+    <button class="btn btn-primary" (click)="sideNavOpened=!sideNavOpened">Filters</button>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 mx-auto d-flex justify-content-center">
+
+          <div class="row">
+            <div class="col">
+              <app-product-list></app-product-list>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

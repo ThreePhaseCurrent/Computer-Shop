@@ -48,6 +48,9 @@ import { appReducers } from './store/reducers/app.reducers';
 //import 'hammerjs';
 import { AuthEffects } from './store/effects/auth.effects';
 import {HttpErrorsInterceptorService} from "./interceptors/httperrors.interceptor";
+import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { ProductViewComponent } from './components/product/product-view/product-view.component';
 
 export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer',
 {factory: () => (appReducers)});
@@ -63,7 +66,10 @@ export function tokenGetter(){
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    SigninComponent
+    SigninComponent,
+    ProductDetailComponent,
+    ProductListComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,

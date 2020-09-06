@@ -54,7 +54,7 @@ namespace ComputerShop.API
             {
                 expression.AddProfile(new AutoMapping());
             });
-            var mapper       = mapperConfig.CreateMapper();
+            var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
 

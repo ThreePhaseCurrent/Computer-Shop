@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openLoginForm() {
-    var dialogResult = this.dialog.open(LoginComponent, {backdropClass: 'login-form-overlay'});
+    let dialogResult = this.dialog.open(LoginComponent, {backdropClass: 'login-form-overlay'});
   }
 
   ngOnInit(): void {
@@ -57,8 +57,8 @@ export class HeaderComponent implements OnInit {
   }
 
   initScripts(){
-    var testScript = document.createElement("script");
-    testScript.setAttribute("src", "../../../assets/js/test.js");
+    let testScript = document.createElement("script");
+    testScript.setAttribute("src", "../../../assets/js/header/test.js");
     document.body.appendChild(testScript);
   }
 

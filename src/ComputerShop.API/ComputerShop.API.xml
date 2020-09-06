@@ -4,12 +4,96 @@
         <name>ComputerShop.API</name>
     </assembly>
     <members>
+        <member name="T:ComputerShop.API.Controllers.AuthController">
+            <summary>
+            Controller for auth options
+            </summary>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.AuthController.#ctor(AutoMapper.IMapper,ComputerShop.API.Services.Interfaces.IUserService,ComputerShop.Core.Services.Interfaces.ITokenService,ComputerShop.Core.Interfaces.IAppLogger{ComputerShop.API.Controllers.AuthController})">
+            <summary>
+            
+            </summary>
+            <param name="mapper">Auto Mapper</param>
+            <param name="userService">Service to manage users </param>
+            <param name="tokenService">Service to manage tokens</param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.AuthController.Register(ComputerShop.API.Models.Register)">
+             <summary>
+             For register user
+             </summary>
+             <remarks>
+            
+             Sample body:
+             
+                 {
+                     "firstName": "TestFirstName1"
+                     "lastName": "TestFirstName1"
+                     "email": "testuser1@gmail.com"
+                     "userName": "Testuser1"
+                     "password": "Pass@word123"
+                     "phone": "+3801111111111"
+                 }
+             
+             </remarks>
+             <param name="register">Register model from UI in body</param>
+             <returns></returns>
+             <response code="200">Register was success</response>
+             <response code="400">Register was invalid</response>
+        </member>
         <member name="M:ComputerShop.API.Controllers.AuthController.UserNameCheck(System.String)">
             <summary>
             Check username exist
             </summary>
             <param name="username">User name</param>
             <returns>Returns True if username is not exist</returns>
+            <response code="200">Always should return code 200</response>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.AuthController.Login(ComputerShop.API.Models.Login)">
+             <summary>
+             Loin for user
+             </summary>
+             <remarks>
+            
+             Sample body:
+            
+                 {
+                     "userLogin": "admin@gmail.com",
+                     "userPassword": "Pass@word123",
+                     "rememberMe": true
+                 }
+            
+             </remarks>
+             <param name="request"></param>
+             <returns></returns>
+             <response code="200">Login was success</response>
+             <response code="400">Model has som error</response>
+             <response code="401">User not found</response>
+        </member>
+        <member name="T:ComputerShop.API.Controllers.ProductController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.ProductController.#ctor(ComputerShop.Core.Services.Interfaces.IProductService)">
+            <summary>
+            
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.ProductController.GetProducts(ComputerShop.API.Models.ProductViewParameters)">
+            <summary>
+            Get page of products
+            </summary>
+            <param name="parameters">Params for pagination</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.ProductController.AddProduct(ComputerShop.Core.Entities.Product)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
         </member>
         <member name="T:ComputerShop.API.Extensions.ServiceCollectionExtensions">
             <summary>
