@@ -10,7 +10,7 @@ namespace ComputerShop.Core.Entities
             UserDevice = new HashSet<UserDevice>();
         }
 
-        public int PriductId { get; set; }
+        public int ProductId { get; set; }
         public string ProductImage { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

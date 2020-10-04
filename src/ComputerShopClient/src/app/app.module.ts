@@ -30,27 +30,27 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { SigninComponent } from './components/signin/signin.component';
+import { HeaderComponent } from './core/components/header/header.component';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { SigninComponent } from './shared/components/signin/signin.component';
 
-import { HomeService } from './services/home.service';
-import {ACCESS_TOKEN_KEY, AuthService} from './services/auth.service';
+import { HomeService } from './core/services/home.service';
+import {ACCESS_TOKEN_KEY, AuthService} from './core/services/auth.service';
 
 import { AuthGuard } from './app-routing/auth-guard';
 import { environment } from 'src/environments/environment';
-import { baseURL } from './shared/baseurl';
+import { baseURL } from './shared/models/baseUrl';
 
-import { appReducers } from './store/reducers/app.reducers';
+import { appReducers } from './core/store/reducers/app.reducers';
 
 //import 'hammerjs';
-import { AuthEffects } from './store/effects/auth.effects';
-import {HttpErrorsInterceptorService} from "./interceptors/httperrors.interceptor";
-import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
-import { ProductListComponent } from './components/product/product-list/product-list.component';
-import { ProductViewComponent } from './components/product/product-view/product-view.component';
+import { AuthEffects } from './core/store/effects/auth.effects';
+import {HttpErrorsInterceptorService} from "./core/interceptors/httperrors.interceptor";
+import { ProductDetailComponent } from './shared/components/product/product-detail/product-detail.component';
+import { ProductListComponent } from './shared/components/product/product-list/product-list.component';
+import { ProductViewComponent } from './shared/components/product/product-view/product-view.component';
 
 export const ROOT_REDUCER = new InjectionToken<any>('Root Reducer',
 {factory: () => (appReducers)});

@@ -115,10 +115,10 @@ namespace ComputerShop.Infrastructure.Data
             
             builder.Entity<Product>(entity =>
             {
-                entity.HasKey(e => e.PriductId)
+                entity.HasKey(e => e.ProductId)
                     .HasName("product_pkey");
 
-                entity.Property(e => e.PriductId).UseIdentityAlwaysColumn();
+                entity.Property(e => e.ProductId).UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Description).IsRequired();
 

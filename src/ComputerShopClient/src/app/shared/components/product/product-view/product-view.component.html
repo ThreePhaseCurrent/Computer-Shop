@@ -1,0 +1,10 @@
+<mat-sidenav-container class="mt-5">
+  <mat-sidenav [(opened)]="sideNavOpened"></mat-sidenav>
+  <mat-sidenav-content>
+    <button class="btn btn-primary" (click)="sideNavOpened=!sideNavOpened">Filters</button>
+
+    <app-product-list></app-product-list>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

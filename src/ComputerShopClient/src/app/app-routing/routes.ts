@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../components/home/home.component';
-import { SigninComponent } from '../components/signin/signin.component';
-import { Login } from '../models/login';
-import { LoginComponent } from '../components/login/login.component';
+import { HomeComponent } from '../shared/components/home/home.component';
+import { SigninComponent } from '../shared/components/signin/signin.component';
+import { Login } from '../shared/models/login';
+import { LoginComponent } from '../shared/components/login/login.component';
 import { AuthGuard } from './auth-guard';
-import {ProductViewComponent} from "../components/product/product-view/product-view.component";
+import {ProductViewComponent} from "../shared/components/product/product-view/product-view.component";
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
