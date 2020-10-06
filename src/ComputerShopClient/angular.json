@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "ComputerShopClient"
+  "defaultProject": "ComputerShopClient",
+  "cli": {
+    "analytics": false
+  }
 }

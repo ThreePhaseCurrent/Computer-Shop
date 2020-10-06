@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AdminLoginComponent],
   imports: [
     CommonModule
   ]
