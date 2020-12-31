@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Restore dependencies
-      run: dotnet restore ComputerShop.API.sln
+      run: dotnet restore src/ComputerShop.API/ComputerShop.API.sln
     - name: Build
-      run: dotnet build ComputerShop.API.sln --no-restore
+      run: dotnet build src/ComputerShop.API/ComputerShop.API.sln --no-restore
     - name: Test
-      run: dotnet test ComputerShop.API.sln --no-build --verbosity normal
+      run: dotnet test src/ComputerShop.API/ComputerShop.API.sln --no-build --verbosity normal
