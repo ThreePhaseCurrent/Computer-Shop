@@ -23,6 +23,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install and npm run build
         run: |
-          npm install
-          npm i
-          npm run build
+          npm --prefix src/ComputerShopClient i 
+          npm --prefix src/ComputerShopClient run build
