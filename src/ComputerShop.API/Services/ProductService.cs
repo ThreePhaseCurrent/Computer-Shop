@@ -15,13 +15,18 @@ namespace ComputerShop.Core.Services
         {
         }
 
-        public async Task<IEnumerable<Product>> GetProducts(ProductViewParameters parameters)
+        public async Task<IEnumerable<Product>> GetProducts(GetProductsRequest productsRequest)
         {
-            return await GetAll()
-            .OrderBy(n => n.Name)
-            .Skip((parameters.PageNumber - 1) * parameters.PageSize)
-            .Take(parameters.PageSize)
-            .ToListAsync();
+            var pagingSettings = productsRequest.ProductViewParameters;
+            var filters = productsRequest.ProductFilters;
+
+            //TODO: to apply filters
+            return await Products
+                .Where(category => category.CategoryId == filters.ProductCategoryId)
+                .OrderBy(n => n.Name)
+                .Skip((pagingSettings.PageNumber - 1) * pagingSettings.PageSize)
+                .Take(pagingSettings.PageSize)
+                .ToListAsync();
         }
     }
 }

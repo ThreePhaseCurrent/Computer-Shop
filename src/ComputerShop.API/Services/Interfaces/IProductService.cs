@@ -8,6 +8,6 @@ namespace ComputerShop.Core.Services.Interfaces
 {
     public interface IProductService: IProductRepository
     {
-        Task<IEnumerable<Product>> GetProducts(ProductViewParameters parameters);
+        Task<IEnumerable<Product>> GetProducts(GetProductsRequest productsRequest);
     }
 }

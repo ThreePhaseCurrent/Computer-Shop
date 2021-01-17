@@ -72,7 +72,7 @@
         </member>
         <member name="T:ComputerShop.API.Controllers.ProductController">
             <summary>
-            
+            Generic controller for products
             </summary>
         </member>
         <member name="M:ComputerShop.API.Controllers.ProductController.#ctor(ComputerShop.Core.Services.Interfaces.IProductService)">
@@ -81,11 +81,11 @@
             </summary>
             <param name="productService"></param>
         </member>
-        <member name="M:ComputerShop.API.Controllers.ProductController.GetProducts(ComputerShop.API.Models.ProductViewParameters)">
+        <member name="M:ComputerShop.API.Controllers.ProductController.GetProducts(ComputerShop.API.Models.GetProductsRequest)">
             <summary>
             Get page of products
             </summary>
-            <param name="parameters">Params for pagination</param>
+            <param name="productsRequest">Includes params for pagination (not required) and filters (required)</param>
             <returns></returns>
         </member>
         <member name="M:ComputerShop.API.Controllers.ProductController.AddProduct(ComputerShop.Core.Entities.Product)">
@@ -149,6 +149,16 @@
             <param name="userManager"></param>
             <typeparam name="T"></typeparam>
             <returns></returns>
+        </member>
+        <member name="T:ComputerShop.API.Validators.GetProductsRequestValidator">
+            <summary>
+            Validator for products request model
+            </summary>
+        </member>
+        <member name="M:ComputerShop.API.Validators.GetProductsRequestValidator.#ctor">
+            <summary>
+            Constructor which to do validation
+            </summary>
         </member>
         <member name="M:ComputerShop.Core.Services.TokenService.GetToken(ComputerShop.Core.Entities.ApplicationUser)">
             <summary>
