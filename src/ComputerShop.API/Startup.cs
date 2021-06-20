@@ -114,6 +114,13 @@ namespace ComputerShop.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
             
             app.UseHttpsRedirection();
@@ -134,6 +141,7 @@ namespace ComputerShop.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Computer Shop Api");
+                c.RoutePrefix = string.Empty;
             });
             
             //create db

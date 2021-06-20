@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using FluentValidation;
 using FluentValidation.Validators;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -7,16 +8,17 @@ namespace ComputerShop.API.Validators.Extensions
     /// <summary>
     /// Phone number custom validator
     /// </summary>
-    public class PhoneNumberValidator : PropertyValidator
+    public class PhoneNumberValidator<T, TProperty> : PropertyValidator<T, TProperty>
     {
-        protected override bool IsValid(PropertyValidatorContext context)
+        public override bool IsValid(ValidationContext<T> context, TProperty value)
         {
-            var phoneNumber = (string) context.PropertyValue;
+            var phoneNumber = value.ToString();
             return Regex.IsMatch(phoneNumber,@"^[+][0-9\-\+]{9,15}$");
         }
 
-        public PhoneNumberValidator() : base($"Is not phone number!")
-        {
-        }
+        public override string Name { get; }
+
+        protected override string GetDefaultMessageTemplate(string errorCode)
+            => "Is not phone number!";
     }
 }

@@ -4,6 +4,11 @@
         <name>ComputerShop.API</name>
     </assembly>
     <members>
+        <member name="T:ComputerShop.API.Controllers.AdminController">
+            <summary>
+            Admin panel controller
+            </summary>
+        </member>
         <member name="T:ComputerShop.API.Controllers.AuthController">
             <summary>
             Controller for auth options
@@ -88,7 +93,14 @@
             <param name="productsRequest">Includes params for pagination (not required) and filters (required)</param>
             <returns></returns>
         </member>
-        <member name="M:ComputerShop.API.Controllers.ProductController.AddProduct(ComputerShop.Core.Entities.Product)">
+        <member name="M:ComputerShop.API.Controllers.ProductController.GetProduct(System.String)">
+            <summary>
+            Get specific product
+            </summary>
+            <param name="productStockNumber">Product's stock number</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerShop.API.Controllers.ProductController.AddProduct(ComputerShop.API.DTOs.ProductToAddDto)">
             <summary>
             Add new product
             </summary>
@@ -118,12 +130,12 @@
             <param name="login"></param>
             <returns></returns>
         </member>
-        <member name="T:ComputerShop.API.Validators.Extensions.PhoneNumberValidator">
+        <member name="T:ComputerShop.API.Validators.Extensions.PhoneNumberValidator`2">
             <summary>
             Phone number custom validator
             </summary>
         </member>
-        <member name="T:ComputerShop.API.Validators.Extensions.UserNameValidator">
+        <member name="T:ComputerShop.API.Validators.Extensions.UserNameValidator`2">
             <summary>
             Ensures that the username is unique
             </summary>

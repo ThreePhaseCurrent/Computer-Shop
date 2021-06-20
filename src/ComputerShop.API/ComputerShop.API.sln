@@ -1,10 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.API", "ComputerShop.API.csproj", "{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShop.API", "ComputerShop.API.csproj", "{E919EA3A-B965-4820-BF92-C5F11BEFCCD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.Core", "..\ComputerShop.Core\ComputerShop.Core.csproj", "{58E65D4B-1D77-4852-AADE-CCC790FA087F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShop.Core", "..\ComputerShop.Core\ComputerShop.Core.csproj", "{58E65D4B-1D77-4852-AADE-CCC790FA087F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.Infrastructure", "..\ComputerShop.Infrastructure\ComputerShop.Infrastructure.csproj", "{B5EC95E8-12BD-4AC1-BCC5-36E26CFC4EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShop.Infrastructure", "..\ComputerShop.Infrastructure\ComputerShop.Infrastructure.csproj", "{B5EC95E8-12BD-4AC1-BCC5-36E26CFC4EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop.Tests", "..\ComputerShop.Tests\ComputerShop.Tests.csproj", "{C44D3949-8898-4DF5-9E29-AEF754E9C8F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,15 @@ Global
 		{B5EC95E8-12BD-4AC1-BCC5-36E26CFC4EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5EC95E8-12BD-4AC1-BCC5-36E26CFC4EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5EC95E8-12BD-4AC1-BCC5-36E26CFC4EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44D3949-8898-4DF5-9E29-AEF754E9C8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44D3949-8898-4DF5-9E29-AEF754E9C8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44D3949-8898-4DF5-9E29-AEF754E9C8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44D3949-8898-4DF5-9E29-AEF754E9C8F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9291018B-8856-4BA4-8800-0732A9870D9D}
 	EndGlobalSection
 EndGlobal

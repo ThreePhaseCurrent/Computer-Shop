@@ -18,6 +18,7 @@ namespace ComputerShop.API.Controllers
     [Route("api")]
     public class AdminController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

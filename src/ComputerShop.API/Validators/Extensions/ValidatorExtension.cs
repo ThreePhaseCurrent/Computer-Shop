@@ -1,6 +1,7 @@
 ﻿using ComputerShop.Core.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace ComputerShop.API.Validators.Extensions
 {
@@ -18,7 +19,7 @@ namespace ComputerShop.API.Validators.Extensions
         public static IRuleBuilderOptions<T, string> PhoneNumber<T>(
             this IRuleBuilder<T, string> rule) 
         {
-            return rule.SetValidator(new PhoneNumberValidator());
+            return rule.SetValidator(new PhoneNumberValidator<T, string>());
         }
         
         /// <summary>
@@ -31,7 +32,7 @@ namespace ComputerShop.API.Validators.Extensions
         public static IRuleBuilderOptions<T, string> UniqueUserName<T>(
             this IRuleBuilder<T, string> rule, UserManager<ApplicationUser> userManager) 
         {
-            return rule.SetValidator(new UserNameValidator(userManager));
+            return rule.SetValidator(new UserNameValidator<T, string>(userManager));
         }
     }
 }
